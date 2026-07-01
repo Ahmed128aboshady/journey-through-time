@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رحلة عبر الزمن - ويب تون المانجا التفاعلية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0b0219;
+    font-family: 'Cairo', sans-serif;
+    color: #f1f5f9;
+    min-height: 100vh;
+    padding-bottom: 80px;
+    background-image: 
+      radial-gradient(circle at 20% 15%, rgba(124, 58, 237, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 80% 85%, rgba(236, 72, 153, 0.08) 0%, transparent 40%);
+  }
+
+  .webtoon-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 780px; /* Perfect width for portrait reading */
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* HEADER */
+  .mag-header {
+    width: 100%;
+    text-align: center;
+    padding: 50px 20px 40px;
+    border-bottom: 2px dashed rgba(255, 255, 255, 0.08);
+    margin-bottom: 40px;
+  }
+
+  .mag-title {
+    font-size: 3.6rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ffd700, #ff6b35, #ec4899, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 15px rgba(255,107,53,0.3));
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .mag-subtitle {
+    color: #c084fc;
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+
+  .episode-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #7c3aed, #db2777);
+    color: white;
+    padding: 6px 24px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    margin-top: 16px;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  }
+
+  /* WEBTOON CONTENT (Vertical Stack) */
+  .manga-stream {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 45px; /* Generous gap between panels */
+  }
+
+  /* Premium Comic Book Frame */
+  .manga-panel {
+    position: relative;
+    width: 100%;
+    background: #ffffff; /* Classic white paper borders */
+    border: 3px solid #000000; /* Thin black outline */
+    border-radius: 6px;
+    padding: 12px; /* Thick white inner frame */
+    box-shadow: 14px 14px 0px #000000; /* Bold comic drop shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+  }
+
+  .manga-panel:hover {
+    transform: scale(1.01) translateY(-3px) !important;
+    box-shadow: 18px 18px 0px #000000;
+  }
+
+  /* Subtle rotational play like real paper sheets on a desk */
+  .manga-stream .manga-panel:nth-child(odd) {
+    transform: rotate(0.4deg);
+  }
+
+  .manga-stream .manga-panel:nth-child(even) {
+    transform: rotate(-0.4deg);
+  }
+
+  .manga-img-wrap {
+    width: 100%;
+    background: #000000;
+    border: 3px solid #000000; /* Frame boundary */
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Full image visibility with natural proportions */
+  .manga-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  .panel-badge {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: #000000;
+    color: #ffd700;
+    padding: 5px 14px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 900;
+    border: 2px solid #ffd700;
+    box-shadow: 3px 3px 0 #000000;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  /* TO BE CONTINUED / FOOTER */
+  .webtoon-footer {
+    width: 100%;
+    background: linear-gradient(180deg, #090014, #120029);
+    text-align: center;
+    padding: 60px 20px 40px;
+    margin-top: 60px;
+    border-radius: 24px;
+    border: 2px solid rgba(124, 58, 237, 0.2);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  }
+
+  .tbc-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #ffd700;
+    text-shadow: 0 0 20px rgba(255,215,0,0.4);
+    margin-bottom: 12px;
+  }
+
+  .tbc-text {
+    color: #c4b5fd;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0 auto 30px;
+  }
+
+  .character-lineup {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+
+  .character-lineup img {
+    height: 90px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.4));
+    transition: transform 0.2s;
+  }
+
+  .character-lineup img:hover {
+    transform: scale(1.1);
+  }
+
+  .promo-box {
+    background: rgba(255, 215, 0, 0.05);
+    border: 2px solid #ffd700;
+    border-radius: 16px;
+    padding: 16px;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .promo-box p {
+    color: #ffd700;
+    font-weight: 700;
+  }
+
+  .promo-box span {
+    color: #c4b5fd;
+    font-size: 0.85rem;
+    margin-top: 6px;
+    display: block;
+  }
+
+  .copyright {
+    color: rgba(255,255,255,0.25);
+    font-size: 0.8rem;
+    margin-top: 40px;
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+</head>
+<body>
+
+<div class="webtoon-wrapper">
+
+  <!-- Header -->
+  <header class="mag-header">
+    <div class="mag-title">رحلة عبر الزمن ⚡</div>
+    <div class="mag-subtitle">مغامرة أبطال المستقبل في العصر الأموي</div>
+    <div class="episode-badge">🌟 الحلقة الأولى: البوابة الزمنية</div>
+  </header>
+
+  <!-- Webtoon Stream -->
+  <main class="manga-stream">
+
+    <!-- PANEL 1 -->
+    <div class="manga-panel">
+      <div class="panel-badge">المشهد 1</div>
+      <div class="manga-img-wrap">
+        <img src="assets/1.jpeg" alt="المشهد الأول" class="manga-img">
+      </div>
+    </div>
+
+    <!-- PANEL 2 -->
+    <div class="manga-panel">
+      <div class="panel-badge">المشهد 2</div>
+      <div class="manga-img-wrap">
+        <img src="assets/2.jpeg" alt="المشهد الثاني" class="manga-img">
+      </div>
+    </div>
+
+    <!-- PANEL 3 -->
+    <div class="manga-panel">
+      <div class="panel-badge">المشهد 3</div>
+      <div class="manga-img-wrap">
+        <img src="assets/3.jpeg" alt="المشهد الثالث" class="manga-img">
+      </div>
+    </div>
+
+    <!-- PANEL 4 -->
+    <div class="manga-panel">
+      <div class="panel-badge">المشهد 4</div>
+      <div class="manga-img-wrap">
+        <img src="assets/4.jpeg" alt="المشهد الرابع" class="manga-img">
+      </div>
+    </div>
+
+    <!-- PANEL 5 -->
+    <div class="manga-panel">
+      <div class="panel-badge">المشهد 5</div>
+      <div class="manga-img-wrap">
+        <img src="assets/5.jpeg" alt="المشهد الخامس" class="manga-img">
+      </div>
+    </div>
+
+    <!-- PANEL 6 -->
+    <div class="manga-panel">
+      <div class="panel-badge">المشهد 6</div>
+      <div class="manga-img-wrap">
+        <img src="assets/6.jpeg" alt="المشهد السادس" class="manga-img">
+      </div>
+    </div>
+
+    <!-- PANEL 7 -->
+    <div class="manga-panel">
+      <div class="panel-badge">المشهد 7</div>
+      <div class="manga-img-wrap">
+        <img src="assets/7.jpeg" alt="المشهد السابع" class="manga-img">
+      </div>
+    </div>
+
+    <!-- PANEL 8 -->
+    <div class="manga-panel">
+      <div class="panel-badge">المشهد 8</div>
+      <div class="manga-img-wrap">
+        <img src="assets/8.jpeg" alt="المشهد الثامن" class="manga-img">
+      </div>
+    </div>
+
+    <!-- PANEL 9 -->
+    <div class="manga-panel">
+      <div class="panel-badge">المشهد 9</div>
+      <div class="manga-img-wrap">
+        <img src="assets/9.jpeg" alt="المشهد التاسع" class="manga-img">
+      </div>
+    </div>
+
+    <!-- PANEL 10 -->
+    <div class="manga-panel">
+      <div class="panel-badge">المشهد 10</div>
+      <div class="manga-img-wrap">
+        <img src="assets/10.jpeg" alt="المشهد العاشر" class="manga-img">
+      </div>
+    </div>
+
+    <!-- PANEL 11 -->
+    <div class="manga-panel">
+      <div class="panel-badge">المشهد 11</div>
+      <div class="manga-img-wrap">
+        <img src="assets/11.jpeg" alt="المشهد الحادي عشر" class="manga-img">
+      </div>
+    </div>
+
+    <!-- PANEL 12 -->
+    <div class="manga-panel">
+      <div class="panel-badge">المشهد 12</div>
+      <div class="manga-img-wrap">
+        <img src="assets/12.jpeg" alt="المشهد الثاني عشر" class="manga-img">
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Webtoon Footer -->
+  <footer class="webtoon-footer">
+    <h2 class="tbc-title">يتبع... 🌀</h2>
+    <p class="tbc-text">
+      هل سينجح يوسف في إقناع الملك الأموي بذكائه التكنولوجي؟<br>
+      وكيف سيواجه الأطفال هجوم جيش التتار والبرابرة؟<br>
+      <strong style="color: #ffd700;">ابقوا معنا في الحلقة القادمة! ⚡</strong>
+    </p>
+
+    <!-- Character lineup -->
+    <div class="character-lineup">
+      <img src="assets/char_hassan.png" alt="حسن" title="حسن">
+      <img src="assets/char_youssef.png" alt="يوسف" title="يوسف">
+      <img src="assets/char_jourie.png" alt="جوري" title="جوري">
+      <img src="assets/char_ziad.png" alt="زياد" title="زياد">
+      <img src="assets/char_amer.png" alt="عامر" title="عامر">
+    </div>
+
+    <div class="promo-box">
+      <p>📱 شارك المانجا والقصة مع أصحابك وأبطال المستقبل!</p>
+      <span>رحلة عبر الزمن - كامب مُنير الصيفي 2026 🌟</span>
+    </div>
+
+    <div class="copyright">جميع الحقوق محفوظة &copy; 2026 | كامب مُنير للأطفال</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
