@@ -10,14 +10,14 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: #0b0219;
+    background: #0c0e1b;
     font-family: 'Cairo', sans-serif;
     color: #f1f5f9;
     min-height: 100vh;
     padding-bottom: 80px;
     background-image: 
-      radial-gradient(circle at 20% 15%, rgba(124, 58, 237, 0.12) 0%, transparent 40%),
-      radial-gradient(circle at 80% 85%, rgba(236, 72, 153, 0.08) 0%, transparent 40%);
+      radial-gradient(circle at 20% 15%, rgba(48, 219, 173, 0.1) 0%, transparent 40%),
+      radial-gradient(circle at 80% 85%, rgba(67, 80, 154, 0.15) 0%, transparent 45%);
   }
 
   .webtoon-wrapper {
@@ -38,35 +38,45 @@
     padding: 50px 20px 40px;
     border-bottom: 2px dashed rgba(255, 255, 255, 0.08);
     margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mag-logo {
+    height: 100px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 15px rgba(48, 219, 173, 0.45));
+    object-fit: contain;
   }
 
   .mag-title {
     font-size: 3.6rem;
     font-weight: 900;
-    background: linear-gradient(135deg, #ffd700, #ff6b35, #ec4899, #8b5cf6);
+    background: linear-gradient(135deg, #ffcf41, #f63d3b, #30dbad);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 15px rgba(255,107,53,0.3));
+    filter: drop-shadow(0 0 15px rgba(48, 219, 173, 0.3));
     line-height: 1.2;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .mag-subtitle {
-    color: #c084fc;
+    color: #30dbad;
     font-size: 1.15rem;
     font-weight: 600;
   }
 
   .episode-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #7c3aed, #db2777);
+    background: linear-gradient(135deg, #43509a, #30dbad);
     color: white;
     padding: 6px 24px;
     border-radius: 50px;
     font-size: 0.9rem;
     margin-top: 16px;
     font-weight: 700;
-    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+    box-shadow: 0 4px 15px rgba(67, 80, 154, 0.4);
   }
 
   /* WEBTOON CONTENT (Vertical Stack) */
@@ -77,22 +87,22 @@
     gap: 45px; /* Generous gap between panels */
   }
 
-  /* Premium Comic Book Frame */
+  /* Premium Comic Book Frame with custom theme colors */
   .manga-panel {
     position: relative;
     width: 100%;
     background: #ffffff; /* Classic white paper borders */
-    border: 3px solid #000000; /* Thin black outline */
-    border-radius: 6px;
+    border: 4px solid #43509a; /* Custom dark blue outline */
+    border-radius: 8px;
     padding: 12px; /* Thick white inner frame */
-    box-shadow: 14px 14px 0px #000000; /* Bold comic drop shadow */
+    box-shadow: 14px 14px 0px #ffcf41; /* Custom bright yellow drop shadow */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
   }
 
   .manga-panel:hover {
     transform: scale(1.01) translateY(-3px) !important;
-    box-shadow: 18px 18px 0px #000000;
+    box-shadow: 18px 18px 0px #ffcf41;
   }
 
   /* Subtle rotational play like real paper sheets on a desk */
@@ -130,25 +140,25 @@
   /* TO BE CONTINUED / FOOTER */
   .webtoon-footer {
     width: 100%;
-    background: linear-gradient(180deg, #090014, #120029);
+    background: linear-gradient(180deg, #0c0e1b, #151833);
     text-align: center;
     padding: 60px 20px 40px;
     margin-top: 60px;
     border-radius: 24px;
-    border: 2px solid rgba(124, 58, 237, 0.2);
+    border: 2px solid rgba(48, 219, 173, 0.25);
     box-shadow: 0 10px 40px rgba(0,0,0,0.5);
   }
 
   .tbc-title {
     font-size: 2.8rem;
     font-weight: 900;
-    color: #ffd700;
-    text-shadow: 0 0 20px rgba(255,215,0,0.4);
+    color: #ffcf41;
+    text-shadow: 0 0 20px rgba(255, 207, 65, 0.4);
     margin-bottom: 12px;
   }
 
   .tbc-text {
-    color: #c4b5fd;
+    color: #a5b3cd;
     font-size: 1.1rem;
     line-height: 1.7;
     max-width: 500px;
@@ -166,7 +176,7 @@
   .character-lineup img {
     height: 90px;
     object-fit: contain;
-    filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.4));
+    filter: drop-shadow(0 0 10px rgba(48, 219, 173, 0.45));
     transition: transform 0.2s;
   }
 
@@ -175,8 +185,8 @@
   }
 
   .promo-box {
-    background: rgba(255, 215, 0, 0.05);
-    border: 2px solid #ffd700;
+    background: rgba(48, 219, 173, 0.05);
+    border: 2px solid #30dbad;
     border-radius: 16px;
     padding: 16px;
     max-width: 420px;
@@ -184,12 +194,12 @@
   }
 
   .promo-box p {
-    color: #ffd700;
+    color: #ffcf41;
     font-weight: 700;
   }
 
   .promo-box span {
-    color: #c4b5fd;
+    color: #30dbad;
     font-size: 0.85rem;
     margin-top: 6px;
     display: block;
@@ -213,6 +223,7 @@
 
   <!-- Header -->
   <header class="mag-header">
+    <img src="assets/logo.png" alt="شعار منير" class="mag-logo">
     <div class="mag-title">رحلة عبر الزمن ⚡</div>
     <div class="mag-subtitle">مغامرة أبطال المستقبل في العصر الأموي</div>
     <div class="episode-badge">🌟 الحلقة الأولى: البوابة الزمنية</div>
