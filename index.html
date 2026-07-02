@@ -9,21 +9,66 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  :root {
+    --bg-color: #f4f6fa;
+    --text-color: #1e293b;
+    --radial-1: rgba(48, 219, 173, 0.15);
+    --radial-2: rgba(255, 207, 65, 0.12);
+    --border-main: #43509a;
+    --title-gradient: linear-gradient(135deg, #43509a, #30dbad);
+    --subtitle-color: #43509a;
+    --badge-bg: linear-gradient(135deg, #ffcf41, #ffde6a);
+    --badge-text: #1e293b;
+    --badge-shadow: rgba(255, 207, 65, 0.35);
+    --footer-bg: #ffffff;
+    --footer-text: #475569;
+    --promo-bg: rgba(48, 219, 173, 0.08);
+    --promo-border: #30dbad;
+    --promo-text: #43509a;
+    --promo-span: #f63d3b;
+    --copyright-color: rgba(67, 80, 154, 0.6);
+    --header-border: rgba(67, 80, 154, 0.15);
+    --logo-shadow: rgba(67, 80, 154, 0.15);
+  }
+
+  body.dark-theme {
+    --bg-color: #0c0e1b;
+    --text-color: #f1f5f9;
+    --radial-1: rgba(48, 219, 173, 0.1);
+    --radial-2: rgba(67, 80, 154, 0.15);
+    --border-main: #30dbad;
+    --title-gradient: linear-gradient(135deg, #ffcf41, #f63d3b, #30dbad);
+    --subtitle-color: #30dbad;
+    --badge-bg: linear-gradient(135deg, #43509a, #30dbad);
+    --badge-text: #ffffff;
+    --badge-shadow: rgba(67, 80, 154, 0.4);
+    --footer-bg: linear-gradient(180deg, #0c0e1b, #151833);
+    --footer-text: #a5b3cd;
+    --promo-bg: rgba(48, 219, 173, 0.05);
+    --promo-border: #30dbad;
+    --promo-text: #ffcf41;
+    --promo-span: #30dbad;
+    --copyright-color: rgba(255, 255, 255, 0.25);
+    --header-border: rgba(255, 255, 255, 0.08);
+    --logo-shadow: rgba(48, 219, 173, 0.45);
+  }
+
   body {
-    background: #f4f6fa;
+    background: var(--bg-color);
     font-family: 'Cairo', sans-serif;
-    color: #1e293b;
+    color: var(--text-color);
     min-height: 100vh;
     padding-bottom: 80px;
     background-image: 
-      radial-gradient(circle at 15% 15%, rgba(48, 219, 173, 0.15) 0%, transparent 45%),
-      radial-gradient(circle at 85% 85%, rgba(255, 207, 65, 0.12) 0%, transparent 45%);
+      radial-gradient(circle at 15% 15%, var(--radial-1) 0%, transparent 45%),
+      radial-gradient(circle at 85% 85%, var(--radial-2) 0%, transparent 45%);
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
   .webtoon-wrapper {
     position: relative;
     z-index: 1;
-    max-width: 780px; /* Perfect width for portrait reading */
+    max-width: 780px;
     margin: 0 auto;
     padding: 0 16px;
     display: flex;
@@ -31,12 +76,42 @@
     align-items: center;
   }
 
+  /* FLOATING THEME TOGGLE */
+  .theme-toggle-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: var(--border-main);
+    color: #ffffff;
+    border: 2.5px solid #ffcf41;
+    padding: 10px 18px;
+    border-radius: 50px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .theme-toggle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+    background: #30dbad;
+    color: #1e293b;
+    border-color: #43509a;
+  }
+
   /* HEADER */
   .mag-header {
     width: 100%;
     text-align: center;
     padding: 40px 20px 30px;
-    border-bottom: 3px dashed rgba(67, 80, 154, 0.15);
+    border-bottom: 3px dashed var(--header-border);
     margin-bottom: 45px;
     display: flex;
     flex-direction: column;
@@ -44,9 +119,9 @@
   }
 
   .mag-logo {
-    height: 160px; /* Enlarged logo */
+    height: 160px;
     margin-bottom: 25px;
-    filter: drop-shadow(0 8px 16px rgba(67, 80, 154, 0.15));
+    filter: drop-shadow(0 8px 16px var(--logo-shadow));
     object-fit: contain;
     transition: transform 0.3s ease;
   }
@@ -58,7 +133,7 @@
   .mag-title {
     font-size: 3.6rem;
     font-weight: 900;
-    background: linear-gradient(135deg, #43509a, #30dbad);
+    background: var(--title-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 2px 4px rgba(67, 80, 154, 0.15));
@@ -67,21 +142,21 @@
   }
 
   .mag-subtitle {
-    color: #43509a;
+    color: var(--subtitle-color);
     font-size: 1.2rem;
     font-weight: 700;
   }
 
   .episode-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #ffcf41, #ffde6a);
-    color: #1e293b;
+    background: var(--badge-bg);
+    color: var(--badge-text);
     padding: 6px 24px;
     border-radius: 50px;
     font-size: 0.95rem;
     margin-top: 18px;
     font-weight: 700;
-    box-shadow: 0 6px 15px rgba(255, 207, 65, 0.35);
+    box-shadow: 0 6px 15px var(--badge-shadow);
   }
 
   /* WEBTOON CONTENT (Vertical Stack) */
@@ -89,18 +164,18 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 45px; /* Generous gap between panels */
+    gap: 45px;
   }
 
   /* Premium Comic Book Frame with custom theme colors */
   .manga-panel {
     position: relative;
     width: 100%;
-    background: #ffffff; /* Classic white paper borders */
-    border: 4.5px solid #43509a; /* Custom dark blue outline */
+    background: #ffffff;
+    border: 4.5px solid var(--border-main);
     border-radius: 10px;
-    padding: 12px; /* Thick white inner frame */
-    box-shadow: 14px 14px 0px #ffcf41; /* Custom bright yellow drop shadow */
+    padding: 12px;
+    box-shadow: 14px 14px 0px #ffcf41;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
   }
@@ -122,7 +197,7 @@
   .manga-img-wrap {
     width: 100%;
     background: #000000;
-    border: 3.5px solid #43509a; /* Dark Blue Frame boundary */
+    border: 3.5px solid var(--border-main);
     border-radius: 4px;
     overflow: hidden;
     display: flex;
@@ -145,24 +220,25 @@
   /* TO BE CONTINUED / FOOTER */
   .webtoon-footer {
     width: 100%;
-    background: #ffffff;
+    background: var(--footer-bg);
     text-align: center;
     padding: 60px 20px 40px;
     margin-top: 60px;
     border-radius: 24px;
-    border: 4.5px solid #43509a;
+    border: 4.5px solid var(--border-main);
     box-shadow: 14px 14px 0px #ffcf41;
+    transition: all 0.3s ease;
   }
 
   .tbc-title {
     font-size: 2.8rem;
     font-weight: 900;
-    color: #f63d3b; /* Custom Red */
+    color: #f63d3b;
     margin-bottom: 12px;
   }
 
   .tbc-text {
-    color: #475569;
+    color: var(--footer-text);
     font-size: 1.1rem;
     line-height: 1.7;
     max-width: 500px;
@@ -189,8 +265,8 @@
   }
 
   .promo-box {
-    background: rgba(48, 219, 173, 0.08);
-    border: 3px solid #30dbad; /* Teal Border */
+    background: var(--promo-bg);
+    border: 3px solid var(--promo-border);
     border-radius: 16px;
     padding: 18px;
     max-width: 420px;
@@ -198,12 +274,12 @@
   }
 
   .promo-box p {
-    color: #43509a; /* Dark Blue */
+    color: var(--promo-text);
     font-weight: 700;
   }
 
   .promo-box span {
-    color: #f63d3b; /* Red */
+    color: var(--promo-span);
     font-size: 0.85rem;
     margin-top: 6px;
     display: block;
@@ -211,7 +287,7 @@
   }
 
   .copyright {
-    color: rgba(67, 80, 154, 0.6);
+    color: var(--copyright-color);
     font-size: 0.85rem;
     margin-top: 40px;
   }
@@ -223,6 +299,10 @@
 </style>
 </head>
 <body>
+
+<button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="تغيير وضع القراءة">
+  🌓 وضع القراءة
+</button>
 
 <div class="webtoon-wrapper">
 
@@ -321,7 +401,7 @@
     <div class="manga-panel">
       <div class="panel-badge">المشهد 11</div>
       <div class="manga-img-wrap">
-        <img src="assets/11.png" alt="المشهد الحادي عشر" class="manga-img">
+        <img src="assets/11.jpeg" alt="المشهد الحادي عشر" class="manga-img">
       </div>
     </div>
 
@@ -362,6 +442,24 @@
   </footer>
 
 </div>
+
+<script>
+  // Theme Toggle Logic
+  function toggleTheme() {
+    const isDark = document.body.classList.toggle('dark-theme');
+    localStorage.setItem('webtoon-theme', isDark ? 'dark' : 'light');
+  }
+
+  // Load saved theme on load
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('webtoon-theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.remove('dark-theme');
+    }
+  });
+</script>
 
 </body>
 </html>
