@@ -178,11 +178,39 @@
     box-shadow: 14px 14px 0px #ffcf41;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .manga-panel:hover {
     transform: scale(1.01) translateY(-3px) !important;
     box-shadow: 18px 18px 0px #ffcf41;
+  }
+
+  /* Audio Voice-Over Button */
+  .play-audio-btn {
+    background: transparent;
+    color: var(--border-main);
+    border: 2.5px solid var(--border-main);
+    padding: 8px 22px;
+    border-radius: 50px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .play-audio-btn:hover {
+    background: #ffcf41;
+    color: #1e293b;
+    border-color: var(--border-main);
+    transform: scale(1.04);
   }
 
   /* Subtle rotational play like real paper sheets on a desk */
@@ -321,8 +349,9 @@
     <div class="manga-panel">
       <div class="panel-badge">المشهد 1</div>
       <div class="manga-img-wrap">
-        <img src="assets/1.jpeg" alt="المشهد الأول" class="manga-img">
+        <img src="assets/1.png" alt="المشهد الأول" class="manga-img">
       </div>
+      <button class="play-audio-btn" onclick="speakText('ياه! المخطوطة دي بتتكلم عن مروان الثالث؟ ده مستحيل! مفيش في التاريخ خليفة بالاسم ده!')">🔊 استمع للحوار</button>
     </div>
 
     <!-- PANEL 2 -->
@@ -331,6 +360,7 @@
       <div class="manga-img-wrap">
         <img src="assets/2.jpeg" alt="المشهد الثاني" class="manga-img">
       </div>
+      <button class="play-audio-btn" onclick="speakText('الـ AI Model شغال زي الصاروخ! لو ربطته بالمخطوطات القديمة هيحل معادلة الكون كله!')">🔊 استمع للحوار</button>
     </div>
 
     <!-- PANEL 3 -->
@@ -339,6 +369,7 @@
       <div class="manga-img-wrap">
         <img src="assets/3.jpeg" alt="المشهد الثالث" class="manga-img">
       </div>
+      <button class="play-audio-btn" onclick="speakText('زياد يقول: كش ملك يا عامر! كسبتك تاني وتالت! وعامر يرد: مستحيل! أنت حركت القطعة وأنا مش واخد بالي!')">🔊 استمع للحوار</button>
     </div>
 
     <!-- PANEL 4 -->
@@ -347,6 +378,7 @@
       <div class="manga-img-wrap">
         <img src="assets/4.jpeg" alt="المشهد الرابع" class="manga-img">
       </div>
+      <button class="play-audio-btn" onclick="speakText('وعشان كده يا صحابي، التاريخ مش بس كتب! التاريخ بيتنفس جوانا كل يوم!')">🔊 استمع للحوار</button>
     </div>
 
     <!-- PANEL 5 -->
@@ -355,6 +387,7 @@
       <div class="manga-img-wrap">
         <img src="assets/5.jpeg" alt="المشهد الخامس" class="manga-img">
       </div>
+      <button class="play-audio-btn" onclick="speakText('إيه اللي بيحصل؟! أنا مش عارف أتحرك! زلزال!!')">🔊 استمع للحوار</button>
     </div>
 
     <!-- PANEL 6 -->
@@ -363,6 +396,7 @@
       <div class="manga-img-wrap">
         <img src="assets/6.jpeg" alt="المشهد السادس" class="manga-img">
       </div>
+      <button class="play-audio-btn" onclick="speakText('آه يا ضهري.. إيه التراب ده؟ إحنا فين؟ هو إيه اللي حصل للدنيا؟')">🔊 استمع للحوار</button>
     </div>
 
     <!-- PANEL 7 -->
@@ -371,6 +405,7 @@
       <div class="manga-img-wrap">
         <img src="assets/7.jpeg" alt="المشهد السابع" class="manga-img">
       </div>
+      <button class="play-audio-btn" onclick="speakText('أيها الدخلاء! كيف تجرأتم على اختراق حرم القصر؟ إنكم جواسيس حتماً!')">🔊 استمع للحوار</button>
     </div>
 
     <!-- PANEL 8 -->
@@ -379,6 +414,7 @@
       <div class="manga-img-wrap">
         <img src="assets/8.jpeg" alt="المشهد الثامن" class="manga-img">
       </div>
+      <button class="play-audio-btn" onclick="speakText('يا مولاي.. وجدنا هؤلاء الغرباء في ممرات القصر وهيأتهم تدعو للريبة!')">🔊 استمع للحوار</button>
     </div>
 
     <!-- PANEL 9 -->
@@ -387,14 +423,16 @@
       <div class="manga-img-wrap">
         <img src="assets/9.jpeg" alt="المشهد التاسع" class="manga-img">
       </div>
+      <button class="play-audio-btn" onclick="speakText('الملك ناوي يراقبنا، والوزير ده مش هيسيبنا.. مفيش قدامنا حل غير نلاقي طريقة نرجع بيها لـ 2026!')">🔊 استمع للحوار</button>
     </div>
 
     <!-- PANEL 10 -->
     <div class="manga-panel">
       <div class="panel-badge">المشهد 10</div>
       <div class="manga-img-wrap">
-        <img src="assets/10.jpeg" alt="المشهد العاشر" class="manga-img">
+        <img src="assets/10.png" alt="المشهد العاشر" class="manga-img">
       </div>
+      <button class="play-audio-btn" onclick="speakText('متخافيش يا جنا.. خليكي ذكية واهدي، وإحنا هنتصرف ونجمع شملنا تاني بكرة الصبح حتماً!')">🔊 استمع للحوار</button>
     </div>
 
     <!-- PANEL 11 -->
@@ -403,6 +441,7 @@
       <div class="manga-img-wrap">
         <img src="assets/11.jpeg" alt="المشهد الحادي عشر" class="manga-img">
       </div>
+      <button class="play-audio-btn" onclick="speakText('يا جلالة الملك، العالم بتاعنا متطور جداً.. بنسافر بالطيارات، وعندنا أجهزة صغيرة في جيوبنا بنكلم بيها الناس صوت وصورة.')">🔊 استمع للحوار</button>
     </div>
 
     <!-- PANEL 12 -->
@@ -411,6 +450,7 @@
       <div class="manga-img-wrap">
         <img src="assets/12.jpeg" alt="المشهد الثاني عشر" class="manga-img">
       </div>
+      <button class="play-audio-btn" onclick="speakText('مولاي.. أمير المؤمنين! الغوث! جيوش التتار والبرابرة يزحفون الآن نحو حدود الإمبراطورية!')">🔊 استمع للحوار</button>
     </div>
 
   </main>
@@ -459,6 +499,27 @@
       document.body.classList.remove('dark-theme');
     }
   });
+
+  // Arabic Text-to-Speech function
+  function speakText(text) {
+    // Cancel any speaking right now
+    if (window.speechSynthesis.speaking) {
+      window.speechSynthesis.cancel();
+    }
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ar'; // standard Arabic voice
+    
+    // Find an Arabic voice if available in system
+    const voices = window.speechSynthesis.getVoices();
+    const arVoice = voices.find(v => v.lang.startsWith('ar'));
+    if (arVoice) {
+      utterance.voice = arVoice;
+    }
+    
+    // Play the speech
+    window.speechSynthesis.speak(utterance);
+  }
 </script>
 
 </body>
