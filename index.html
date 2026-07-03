@@ -29,6 +29,8 @@
     --copyright-color: rgba(67, 80, 154, 0.6);
     --header-border: rgba(67, 80, 154, 0.15);
     --logo-shadow: rgba(67, 80, 154, 0.15);
+    --card-shadow: 0 10px 30px rgba(67, 80, 154, 0.12);
+    --card-shadow-hover: 0 16px 40px rgba(67, 80, 154, 0.2);
   }
 
   body.dark-theme {
@@ -51,6 +53,8 @@
     --copyright-color: rgba(255, 255, 255, 0.25);
     --header-border: rgba(255, 255, 255, 0.08);
     --logo-shadow: rgba(48, 219, 173, 0.45);
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --card-shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.6);
   }
 
   body {
@@ -175,7 +179,7 @@
     border: 4.5px solid var(--border-main);
     border-radius: 10px;
     padding: 12px;
-    box-shadow: 14px 14px 0px #ffcf41;
+    box-shadow: var(--card-shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
     display: flex;
@@ -185,7 +189,7 @@
 
   .manga-panel:hover {
     transform: scale(1.01) translateY(-3px) !important;
-    box-shadow: 18px 18px 0px #ffcf41;
+    box-shadow: var(--card-shadow-hover);
   }
 
   /* Audio Voice-Over Button */
@@ -254,7 +258,7 @@
     margin-top: 60px;
     border-radius: 24px;
     border: 4.5px solid var(--border-main);
-    box-shadow: 14px 14px 0px #ffcf41;
+    box-shadow: var(--card-shadow);
     transition: all 0.3s ease;
   }
 
@@ -337,7 +341,7 @@
     border: 3.5px solid var(--border-main);
     border-radius: 20px;
     padding: 12px 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15), 10px 10px 0px #ffcf41;
+    box-shadow: var(--card-shadow);
     z-index: 1000;
     transition: all 0.3s ease;
   }
